@@ -13,6 +13,7 @@ typedef struct Node
 {
     Dato * data; //ptr to dato object
     Node * next; //ptr to next node of the list
+    Node * prev; // ptr to previous node
 
     //Constructors
     explicit Node(Dato *data) : data(data) {}
