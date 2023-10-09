@@ -77,9 +77,11 @@ Dato * LinkedList::getAt(int pos)
 //Inserts
 void LinkedList::insertFirst(Dato * data) { //Used only if list is empty
     this->head = new Node(data, this->head);
+    this->head->prev = nullptr; //si es el primer elemento, su previo es un nullptr
     this->size++;
     if (size == 1)
     {
+        //Si solo hay un elemento, head y tail son el mismo nodo
         this->tail = this->head;
     }
 
@@ -93,9 +95,14 @@ void LinkedList::insertLast(Dato * data) {
 
     else
     {
+        //Crear nuevo ultimo nodo y ligarlo con el penultimo
         this->tail->next = new Node(data);
-        this->tail = this->tail->next;
-        this->tail->data = data;
+
+        //ligar ultimo con penultimo
+        this->tail->next->prev = this->tail;
+
+        this->tail = this->tail->next; //asignamos tail al actual nuevo ultimo
+        this->tail->data = data;       //asignamos data a el ultimo elemento
         this->size++;
     }
 }
@@ -135,6 +142,11 @@ void LinkedList::insertAt(int pos, Dato * data) {
         Node * newNode = new Node(data,temp);
 
         currentPtr->next = newNode;
+
+        //ligar nodo insertado con nodo previo
+        newNode->prev = currentPtr;
+        //ligar nodo insertado + 1 con nodo insertado
+        temp->prev = newNode;
 
         this->size++;
 
