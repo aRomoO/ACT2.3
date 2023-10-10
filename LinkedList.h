@@ -43,9 +43,10 @@ public:
     void insertFirst(Dato *data);       // O(1)
     void insertLast(Dato *data);        // O(1)
     void insertAt(int pos, Dato *data); // O(n)
+    void swap(Node *a, Node *b);        // O(1
 
     void setAt(int pos, Dato *data); // O(n)
-    void swap(int pos1, int pos2);   // O(n)
+    void bubbleSort();
 
     // Removers
     /*

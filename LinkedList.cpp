@@ -166,29 +166,40 @@ void LinkedList::setAt(int pos, Dato *data)
     current->data = data;
 }
 
-void LinkedList::swap(int pos1, int pos2)
+void LinkedList::swap(Node *a, Node *b)
 {
-    if (pos1 < 0 || pos1 > this->size - 1 || pos2 < 0 || pos2 > this->size - 1)
-    {
-        throw invalid_argument("Position out of bounds");
-    }
-
-    Node *current = this->head; // Ptr para recorrer la  lista
-    for (int i = 0; i < pos1; i++)
-    {
-        current = current->next;
-    }
-    Node *current2 = this->head; // Ptr para recorrer la  lista
-    for (int i = 0; i < pos2; i++)
-    {
-        current2 = current2->next;
-    }
-
-    Dato *temp = current->data;
-    current->data = current2->data;
-    current2->data = temp;
+    Dato *temp = a->data;
+    a->data = b->data;
+    b->data = temp;
 }
 
+void LinkedList::bubbleSort()
+{
+    int swapped;
+    Node *ptr1;
+    Node *lptr = NULL;
+
+    /* Checking for empty list */
+    if (head == NULL)
+        return;
+
+    do
+    {
+        swapped = 0;
+        ptr1 = head;
+
+        while (ptr1->next != lptr)
+        {
+            if (ptr1->data->getOcteto(1) > ptr1->next->data->getOcteto(1))
+            {
+                swap(ptr1, ptr1->next);
+                swapped = 1;
+            }
+            ptr1 = ptr1->next;
+        }
+        lptr = ptr1;
+    } while (swapped);
+}
 // Removes
 
 // Operator overloads

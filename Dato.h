@@ -5,17 +5,16 @@
 #ifndef ACT2_3_DATO_H
 #define ACT2_3_DATO_H
 
-
 #include <iostream>
 #include <sstream>
 #include <fstream>
 #include <vector>
 
-
 using namespace std;
 
-//Struct para guardar cada octeto del ip  y el puerto con la menor cantidad de bits posibles
-struct IP {
+// Struct para guardar cada octeto del ip  y el puerto con la menor cantidad de bits posibles
+struct IP
+{
     uint16_t oct1;
     uint16_t oct2;
     uint16_t oct3;
@@ -32,33 +31,34 @@ struct IP {
     }
 };
 
-class Dato{
+class Dato
+{
 private:
-    string  mes,
-            hora,
-            ip,
-            fallo;
+    string mes,
+        hora,
+        ip,
+        fallo;
 
     int dia;
     IP IP_VALUE;
 
 public:
-    //Constructor
+    // Constructor
     Dato(string line);
 
-    //Getters
+    // Getters
+    string getIP() const;
+    int getOcteto(int index);
     string getMes() const;
     int getDia();
     const string &getHora() const;
 
-
-    //Operator overload
-    friend ostream& operator<<(ostream& os, Dato& d){
+    // Operator overload
+    friend ostream &operator<<(ostream &os, Dato &d)
+    {
         os << d.mes << " " << d.dia << " " << d.hora << " " << d.ip << " " << d.fallo;
         return os;
     }
 };
 
-
-
-#endif //ACT2_3_DATO_H
+#endif // ACT2_3_DATO_H
