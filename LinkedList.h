@@ -47,6 +47,7 @@ public:
 
     void setAt(int pos, Dato *data); // O(n)
     void bubbleSort();
+    bool Compara(Node *comp, Node *comp2);
 
     // Removers
     /*

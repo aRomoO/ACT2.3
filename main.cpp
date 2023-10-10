@@ -11,7 +11,7 @@ int main()
 
     // leemos el archivo de texto
     cout << "Recolectando Datos del Archivo" << endl;
-    ifstream File("bitacora.txt");
+    ifstream File("bitacoraReducida.txt");
     // obtenemos cada linea del archivo de texto
     int lines_num = 0;
     while (getline(File, line))
@@ -28,7 +28,7 @@ int main()
     cout << "Ordenando Datos" << endl;
     llDatos.bubbleSort();
     cout << "Datos Ordenados" << endl;
-    cout << llDatos << endl;
+    // cout << llDatos << endl;
 
     // Imprimimos los datos ordenados
 

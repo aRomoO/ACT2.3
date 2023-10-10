@@ -166,6 +166,23 @@ void LinkedList::setAt(int pos, Dato *data)
     current->data = data;
 }
 
+bool LinkedList::Compara(Node *a, Node *b)
+{
+    for (int i = 1; i <= 5; i++)
+    {
+        if (a->data->getOcteto(i) > b->data->getOcteto(i))
+        {
+            swap(a, b);
+            return 0;
+        }
+        else if (a->data->getOcteto(i) < b->data->getOcteto(i))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void LinkedList::swap(Node *a, Node *b)
 {
     Dato *temp = a->data;
@@ -190,10 +207,9 @@ void LinkedList::bubbleSort()
 
         while (ptr1->next != lptr)
         {
-            if (ptr1->data->getOcteto(1) > ptr1->next->data->getOcteto(1))
+            if (Compara(ptr1, ptr1->next))
             {
-                swap(ptr1, ptr1->next);
-                swapped = 1;
+                swapped = true;
             }
             ptr1 = ptr1->next;
         }
