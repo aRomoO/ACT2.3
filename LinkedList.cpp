@@ -216,10 +216,82 @@ void LinkedList::bubbleSort()
         lptr = ptr1;
     } while (swapped);
 }
+void LinkedList::binsearch(string inicio, string fin)
+{
+    int inicio_oct1, fin_oct1;
+    std::stringstream ssini(inicio);
+    ssini >> inicio_oct1;
+    std::stringstream ssfin(fin);
+    ssfin >> fin_oct1;
+
+    // queremos encontrar el primer nodo que tenga el octeto 1 mayor o igual a inicio_oct1, por medio de busqueda binaria
+    // y guardaremos la direccion de memoria de ese nodo en un puntero
+    Node *inicio_ptr = this->head;
+    int inicio_index = 0;
+    int inicio_left = 0;
+    int inicio_right = this->size - 1;
+    int inicio_mid = 0;
+    while (inicio_left <= inicio_right)
+    {
+        inicio_mid = (inicio_left + inicio_right) / 2;
+        if (inicio_ptr->data->getOcteto(1) == inicio_oct1)
+        {
+            break;
+        }
+        else if (inicio_ptr->data->getOcteto(1) < inicio_oct1)
+        {
+            inicio_left = inicio_mid + 1;
+        }
+        else
+        {
+            inicio_right = inicio_mid - 1;
+        }
+        inicio_ptr = inicio_ptr->next;
+        inicio_index++;
+    }
+
+    // queremos encontrar el primer nodo que tenga el octeto 1 mayor o igual a fin_oct1, por medio de busqueda binaria
+    // y guardaremos la direccion de memoria de ese nodo en un puntero
+    Node *fin_ptr = this->head;
+    int fin_index = 0;
+    int fin_left = 0;
+    int fin_right = this->size - 1;
+    int fin_mid = 0;
+    while (fin_left <= fin_right)
+    {
+        fin_mid = (fin_left + fin_right) / 2;
+        if (fin_ptr->data->getOcteto(1) == fin_oct1)
+        {
+            break;
+        }
+        else if (fin_ptr->data->getOcteto(1) < fin_oct1)
+        {
+            fin_left = fin_mid + 1;
+        }
+        else
+        {
+            fin_right = fin_mid - 1;
+        }
+        fin_ptr = fin_ptr->next;
+        fin_index++;
+    }
+
+    // ahora que tenemos los punteros de inicio y fin, podemos recorrer la lista desde inicio_ptr hasta fin_ptr
+    // modificamos la lista original para que solo tenga los nodos que cumplen con la condicion
+    Node *current = inicio_ptr;
+    for (int i = inicio_index; i < fin_index; i++)
+    {
+        current = current->next;
+    }
+    this->head = inicio_ptr;
+    this->tail = current;
+    this->size = fin_index - inicio_index + 1;
+}
 // Removes
 
 // Operator overloads
-ostream &operator<<(ostream &os, const LinkedList &list)
+ostream &
+operator<<(ostream &os, const LinkedList &list)
 {
     Node *current = list.head;
     for (int i = 0; i < list.size; i++)
