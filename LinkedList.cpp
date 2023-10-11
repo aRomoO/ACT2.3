@@ -287,6 +287,46 @@ void LinkedList::binsearch(string inicio, string fin)
     this->tail = current;
     this->size = fin_index - inicio_index + 1;
 }
+
+void LinkedList::linearsearch(string inicio, string fin)
+{
+    int inicio_oct1, fin_oct1;
+    std::stringstream ssini(inicio);
+    ssini >> inicio_oct1;
+    std::stringstream ssfin(fin);
+    ssfin >> fin_oct1;
+
+    // queremos encontrar el primer nodo que tenga el octeto 1 mayor o igual a inicio_oct1, por medio de busqueda lineal
+    // y guardaremos la direccion de memoria de ese nodo en un puntero
+    Node *inicio_ptr = this->head;
+    int inicio_index = 0;
+    while (inicio_ptr->data->getOcteto(1) < inicio_oct1)
+    {
+        inicio_ptr = inicio_ptr->next;
+        inicio_index++;
+    }
+
+    // queremos encontrar el primer nodo que tenga el octeto 1 mayor o igual a fin_oct1, por medio de busqueda lineal
+    // y guardaremos la direccion de memoria de ese nodo en un puntero
+    Node *fin_ptr = this->head;
+    int fin_index = 0;
+    while (fin_ptr->data->getOcteto(1) < fin_oct1)
+    {
+        fin_ptr = fin_ptr->next;
+        fin_index++;
+    }
+
+    // ahora que tenemos los punteros de inicio y fin, podemos recorrer la lista desde inicio_ptr hasta fin_ptr
+    // modificamos la lista original para que solo tenga los nodos que cumplen con la condicion
+    Node *current = inicio_ptr;
+    for (int i = inicio_index; i < fin_index; i++)
+    {
+        current = current->next;
+    }
+    this->head = inicio_ptr;
+    this->tail = current;
+    this->size = fin_index - inicio_index + 1;
+}
 // Removes
 
 // Operator overloads

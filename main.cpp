@@ -58,7 +58,7 @@ int main()
 
         LinkedList busqueda = llDatos;
 
-        busqueda.binsearch(inicio, fin);
+        busqueda.linearsearch(inicio, fin);
 
         cout << "Guardando Busqueda" << endl;
         nbusquedas++;
