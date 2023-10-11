@@ -47,7 +47,7 @@ public:
     Dato(string line);
 
     // Getters
-    string getIP() const;
+    int getIP();
     int getOcteto(int index);
     string getMes() const;
     int getDia();

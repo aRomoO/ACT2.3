@@ -49,6 +49,7 @@ public:
     void bubbleSort();
     bool Compara(Node *comp, Node *comp2);
     void binsearch(string inicio, string fin);
+    void linearsearch(string inicio, string fin);
     // Removers
     /*
     void removeFirst(); //O(1)

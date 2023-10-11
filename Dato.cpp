@@ -40,9 +40,9 @@ const string &Dato::getHora() const
     return hora;
 }
 
-string Dato::getIP() const
+int Dato::getIP()
 {
-    return ip;
+    return getOcteto(1);
 }
 
 int Dato::getOcteto(int index)
