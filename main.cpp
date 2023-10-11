@@ -11,7 +11,7 @@ int main()
 
     // leemos el archivo de texto
     cout << "Recolectando Datos del Archivo" << endl;
-    ifstream File("bitacoraReducida.txt");
+    ifstream File("G:\\My Drive\\3ER SEMESTRE\\Data Structures and Algorithms\\act2_3\\bitacoraReducida.txt");
     // obtenemos cada linea del archivo de texto
     int lines_num = 0;
     while (getline(File, line))
@@ -23,14 +23,19 @@ int main()
     }
     File.close();
 
+    if (lines_num == 0)
+    {
+        cout << "no se pudieron cargar los datos\n";
+    }
+
     // Imprimimos los datos tal como están en el archivo
     // Ordenamos los datos
     cout << "Ordenando Datos" << endl;
     llDatos.bubbleSort();
     cout << "Datos Ordenados" << endl;
     // cout << llDatos << endl;
-
     // Imprimimos los datos ordenados
+
 
     // Guardamos los datos ordenados en un nuevo archivo
     cout << "Guardando Datos Ordenados" << endl;
