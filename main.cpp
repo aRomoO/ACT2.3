@@ -64,7 +64,7 @@ int main()
 
         cout << "Guardando Busqueda" << endl;
         nbusquedas++;
-        ofstream FileSalida(LINUX_PREFIX"salidaN-Eq");
+        ofstream FileSalida(LINUX_PREFIX"salida"+ to_string(nbusquedas)+"-Eq7");
         FileSalida << busqueda;
         FileSalida.close();
 
