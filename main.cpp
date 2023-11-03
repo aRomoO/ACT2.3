@@ -75,6 +75,7 @@ int main()
         if (continuar == 0)
         {
             cout << "Numero de busquedas realizadas: " << nbusquedas << endl;
+            exit(1);
         }
     }
 
