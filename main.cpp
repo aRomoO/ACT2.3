@@ -4,6 +4,8 @@
 
 using namespace std;
 
+#define LINUX_PREFIX "../"
+
 int main()
 {
     string line;                    // Var donde se almacenará la linea que se está leyendo del txt
@@ -12,7 +14,7 @@ int main()
     // leemos el archivo de texto
     cout << "Recolectando Datos del Archivo" << endl;
 
-    ifstream File("bitacora.txt");
+    ifstream File(LINUX_PREFIX"bitacora.txt");
 
     // obtenemos cada linea del archivo de texto
     int lines_num = 0;
@@ -42,7 +44,7 @@ int main()
 
     // Guardamos los datos ordenados en un nuevo archivo
     cout << "Guardando Datos Ordenados" << endl;
-    ofstream File2("bitacora_ordenada.txt");
+    ofstream File2(LINUX_PREFIX"bitacora_ordenada.txt");
     File2 << llDatos;
     File2.close();
 
@@ -62,7 +64,7 @@ int main()
 
         cout << "Guardando Busqueda" << endl;
         nbusquedas++;
-        ofstream File3("salidaN-Eq");
+        ofstream File3(LINUX_PREFIX"salidaN-Eq");
         File3 << busqueda;
         File3.close();
 
