@@ -14,18 +14,18 @@ int main()
     // leemos el archivo de texto
     cout << "Recolectando Datos del Archivo" << endl;
 
-    ifstream File(LINUX_PREFIX"bitacora.txt");
+    ifstream FileBitacora(LINUX_PREFIX"bitacora.txt");
 
     // obtenemos cada linea del archivo de texto
     int lines_num = 0;
-    while (getline(File, line))
+    while (getline(FileBitacora, line))
     {
         // Insertar cada linea como un objecto dato a la Linked List
         llDatos.insertLast(new Dato(line));
         lines_num++; // Aumentar contador de lineas
         // imprimir la ip de cada linea
     }
-    File.close();
+    FileBitacora.close();
 
     if (lines_num == 0)
     {
@@ -44,9 +44,9 @@ int main()
 
     // Guardamos los datos ordenados en un nuevo archivo
     cout << "Guardando Datos Ordenados" << endl;
-    ofstream File2(LINUX_PREFIX"bitacora_ordenada.txt");
-    File2 << llDatos;
-    File2.close();
+    ofstream FileBitacoraOrdenada(LINUX_PREFIX"bitacora_ordenada.txt");
+    FileBitacoraOrdenada << llDatos;
+    FileBitacoraOrdenada.close();
 
     bool continuar = true;
     int nbusquedas = 0;
@@ -64,9 +64,9 @@ int main()
 
         cout << "Guardando Busqueda" << endl;
         nbusquedas++;
-        ofstream File3(LINUX_PREFIX"salidaN-Eq");
-        File3 << busqueda;
-        File3.close();
+        ofstream FileSalida(LINUX_PREFIX"salidaN-Eq");
+        FileSalida << busqueda;
+        FileSalida.close();
 
         cout << "Busqueda Guardada" << endl;
         cout << "Desea realizar otra busqueda? (1 = si, 0 = no): ";
