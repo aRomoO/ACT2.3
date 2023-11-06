@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/ac2_3.dir/main.cpp.o CMakeFiles/ac2_3.dir/MyBST.cpp.o CMakeFiles/ac2_3.dir/Dato.cpp.o CMakeFiles/ac2_3.dir/LinkedList.cpp.o -o ac2_3 

@@ -1,83 +1,63 @@
 #include <iostream>
 #include "Dato.h"
-#include "LinkedList.h"
+#include "MyBST.h"
+#include <map>
 
 using namespace std;
 
 #define LINUX_PREFIX "../"
 
-int main()
-{
-    string line;                    // Var donde se almacenará la linea que se está leyendo del txt
-    LinkedList llDatos, sortedList; // Linked list donde se almacenarán los datos
+int main(){
+    string line; // Var donde se almacenará la linea que se está leyendo del txt
 
     // leemos el archivo de texto
-    cout << "Recolectando Datos del Archivo" << endl;
+    cout << LINUX_PREFIX"Recolectando Datos del Archivo" << endl;
 
-    ifstream FileBitacora(LINUX_PREFIX"bitacora.txt");
+    ifstream File(LINUX_PREFIX"bitacora2.txt");
+
+    // inicializamos el mapa donde registraremos la cantidad de veces que se repiten las direcciones ip
+    map<string, int> ipMap; // como clave tenemos la direccion ip, sin el su puerto, y como valor, las n veces que se repite
 
     // obtenemos cada linea del archivo de texto
     int lines_num = 0;
-    while (getline(FileBitacora, line))
-    {
-        // Insertar cada linea como un objecto dato a la Linked List
-        llDatos.insertLast(new Dato(line));
+    while (getline(File, line)){
         lines_num++; // Aumentar contador de lineas
-        // imprimir la ip de cada linea
-    }
-    FileBitacora.close();
-
-    if (lines_num == 0)
-    {
-        cout << "no se pudieron cargar los datos\n";
-    }
-
-    // Imprimimos los datos tal como están en el archivo
-    // Ordenamos los datos
-    cout << "Ordenando Datos" << endl;
-    llDatos.bubbleSort();
-    cout << "Datos Ordenados" << endl;
-    // cout << llDatos << endl;
-
-    // Imprimimos los datos ordenados
-
-
-    // Guardamos los datos ordenados en un nuevo archivo
-    cout << "Guardando Datos Ordenados" << endl;
-    ofstream FileBitacoraOrdenada(LINUX_PREFIX"bitacora_ordenada.txt");
-    FileBitacoraOrdenada << llDatos;
-    FileBitacoraOrdenada.close();
-
-    bool continuar = true;
-    int nbusquedas = 0;
-    while (continuar)
-    {
-        string inicio, fin;
-        cout << "Ingresa la IP del inicio de la busqueda: ";
-        cin >> inicio;
-        cout << "Ingresa la IP del final de la busqueda: ";
-        cin >> fin;
-
-        LinkedList busqueda = llDatos;
-
-        busqueda.linearsearch(inicio, fin);
-
-        cout << "Guardando Busqueda" << endl;
-        nbusquedas++;
-        ofstream FileSalida(LINUX_PREFIX"salida"+ to_string(nbusquedas)+"-Eq7");
-        FileSalida << busqueda;
-        FileSalida.close();
-
-        cout << "Busqueda Guardada" << endl;
-        cout << "Desea realizar otra busqueda? (1 = si, 0 = no): ";
-        cin >> continuar;
-
-        if (continuar == 0)
-        {
-            cout << "Numero de busquedas realizadas: " << nbusquedas << endl;
-            exit(1);
+        Dato *dato = new Dato(line); // convertimos la linea del archivo en un objeto tipo dato
+        string strIP = dato->getIP(); // de esta manera, obtenemos la ip sin el puerto, de dicho dato
+        if(ipMap.find(strIP) == ipMap.end()){
+            ipMap[strIP] = 1; // si la ip no ha sido registrada en el mapa, le asignamos el valor de 1 repeticion
+        }
+        else{
+            ipMap[strIP]++; // si la ip ya habia sido registrada en el mapa, le incrementamos en 1 la cantidad de repeticiones
         }
     }
+    File.close();
+
+    if(lines_num == 0){
+        cout << "No se pudieron cargar los datos\n";
+    }
+
+    // escribimos en un nuevo archivo de texto, las distintas ips con sus respectivas repeticiones
+    cout << "Mapeo" << endl;
+    ofstream File2(LINUX_PREFIX"Mapeo.txt");
+
+    // creamos un BST llamado bst, donde ingresaremos las distintas ip con sus n repeticiones
+    // dichas repeticiones seran la clave de cada nodo del BST
+    MyBST *bst = new MyBST();
+
+    // para recorrer el mapa que construimos previamente, me base en la siguiente liga:
+    // https://stackoverflow.com/questions/26281979/c-loop-through-map
+    map<string, int>::iterator i;
+    for (i = ipMap.begin(); i != ipMap.end(); i++){
+        string clave = i->first;
+        int valor = i->second;
+        File2 << "La direccion Ip: " << clave << " intento acceder " << valor << " veces" << endl;
+        bst->insert(valor, clave); // insertamos las distintas ips con sus respectivas repeticiones, en el BST
+    }
+    File.close(); // dejamos de escribir en el archivo
+
+    // Buscamos las direcciones IP que mas veces trataron de ingresar
+    bst->ultimos(5);
 
     return 0;
 }

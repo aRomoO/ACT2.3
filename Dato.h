@@ -35,9 +35,10 @@ class Dato
 {
 private:
     string mes,
-        hora,
-        ip,
-        fallo;
+            hora,
+            ip,
+            fallo,
+            stringIp;
 
     int dia;
     IP IP_VALUE;
@@ -47,7 +48,7 @@ public:
     Dato(string line);
 
     // Getters
-    int getIP();
+    string getIP();
     int getOcteto(int index);
     string getMes() const;
     int getDia();

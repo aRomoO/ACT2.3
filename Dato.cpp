@@ -20,7 +20,6 @@ Dato::Dato(string line)
     this->dia = stoi(info[1]);
     this->hora = info[2];
     this->ip = info[3];
-
     // Meter ip a su Struct
     IP_VALUE.FILL_IP(this->ip);
 }
@@ -40,9 +39,9 @@ const string &Dato::getHora() const
     return hora;
 }
 
-int Dato::getIP()
-{
-    return getOcteto(1);
+string Dato::getIP(){
+    this->stringIp = to_string(this->getOcteto(1)) + "." + to_string(this->getOcteto(2)) + "." + to_string(this->getOcteto(3)) + "." + to_string(this->getOcteto(4));
+    return stringIp;
 }
 
 int Dato::getOcteto(int index)
