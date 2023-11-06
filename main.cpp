@@ -9,7 +9,9 @@ using namespace std;
 #define NUM_DATOS_MOSTRADOS 5
 
 
-#define LINUX_PREFIX "../"
+// LINUX_PREFIX Se usa para "compensar" el "./" y desarrollo en Clion Ubuntu
+// (ejecutable está un subfolder dentro del main folder)
+#define LINUX_PREFIX "../"  // set as "" en Windows
 
 int main(){
     string line; // Var donde se almacenará la linea que se está leyendo del txt
@@ -24,21 +26,24 @@ int main(){
 
     // obtenemos cada linea del archivo de texto
     int lines_num = 0;
-    while (getline(File, line)){
+    while (getline(File, line))
+    {
         lines_num++; // Aumentar contador de lineas
         Dato *dato = new Dato(line); // convertimos la linea del archivo en un objeto tipo dato
         string strIP = dato->getIP(); // de esta manera, obtenemos la ip sin el puerto, de dicho dato
-        if(ipMap.find(strIP) == ipMap.end()){
+        if(ipMap.find(strIP) == ipMap.end())
+        {
             ipMap[strIP] = 1; // si la ip no ha sido registrada en el mapa, le asignamos el valor de 1 repeticion
         }
-        else{
+        else
+        {
             ipMap[strIP]++; // si la ip ya habia sido registrada en el mapa, le incrementamos en 1 la cantidad de repeticiones
         }
     }
     File.close();
 
     if(lines_num == 0){
-        cout << "No se pudieron cargar los datos\n";
+        cout << "No se pudieron cargar los datos" << endl;
     }
 
     // escribimos en un nuevo archivo de texto, las distintas ips con sus respectivas repeticiones
@@ -52,7 +57,8 @@ int main(){
     // para recorrer el mapa que construimos previamente, me base en la siguiente liga:
     // https://stackoverflow.com/questions/26281979/c-loop-through-map
     map<string, int>::iterator i;
-    for (i = ipMap.begin(); i != ipMap.end(); i++){
+    for (i = ipMap.begin(); i != ipMap.end(); i++)
+    {
         string clave = i->first;
         int valor = i->second;
         File2 << "La direccion Ip: " << clave << " intento acceder " << valor << " veces" << endl;
