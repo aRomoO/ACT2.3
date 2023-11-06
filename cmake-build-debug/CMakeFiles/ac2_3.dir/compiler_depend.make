@@ -791,9 +791,7 @@ CMakeFiles/ac2_3.dir/main.cpp.o: /home/fredi/Documents/DS_And_Algorithms/ACT3.4/
   /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/bits/invoke.h \
   /usr/include/c++/11/bits/stl_multimap.h \
-  /usr/include/c++/11/bits/erase_if.h \
-  /usr/include/string.h \
-  /usr/include/strings.h
+  /usr/include/c++/11/bits/erase_if.h
 
 
 /usr/include/c++/11/bits/erase_if.h:
@@ -1054,8 +1052,6 @@ CMakeFiles/ac2_3.dir/main.cpp.o: /home/fredi/Documents/DS_And_Algorithms/ACT3.4/
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
-/usr/include/string.h:
-
 /usr/include/c++/11/cstdint:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
@@ -1189,8 +1185,6 @@ CMakeFiles/ac2_3.dir/main.cpp.o: /home/fredi/Documents/DS_And_Algorithms/ACT3.4/
 /usr/include/c++/11/bits/streambuf_iterator.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/strings.h:
 
 /usr/include/c++/11/bits/localefwd.h:
 

@@ -5,6 +5,10 @@
 
 using namespace std;
 
+
+#define NUM_DATOS_MOSTRADOS 5
+
+
 #define LINUX_PREFIX "../"
 
 int main(){
@@ -57,7 +61,7 @@ int main(){
     File.close(); // dejamos de escribir en el archivo
 
     // Buscamos las direcciones IP que mas veces trataron de ingresar
-    bst->ultimos(5);
+    bst->ultimos(NUM_DATOS_MOSTRADOS);
 
     return 0;
 }
