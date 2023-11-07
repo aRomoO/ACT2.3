@@ -37,7 +37,8 @@ private:
     string mes,
         hora,
         ip,
-        fallo;
+        fallo,
+        stringIp;
 
     int dia;
     IP IP_VALUE;
@@ -47,15 +48,15 @@ public:
     Dato(string line);
 
     // Getters
-    int getIP();
+    string getIp();
+    string getIpNoPort();
     int getOcteto(int index);
     string getMes() const;
     int getDia();
     const string &getHora() const;
 
     // Operator overload
-    friend ostream &operator<<(ostream &os, Dato &d)
-    {
+    friend ostream &operator<<(ostream &os, Dato &d){
         os << d.mes << " " << d.dia << " " << d.hora << " " << d.ip << " " << d.fallo;
         return os;
     }
